@@ -18,7 +18,7 @@
 # Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA 02111-1307, USA.
 
-"""weixin program develop"""
+"""weixin program develop."""
 
 import os
 
@@ -55,6 +55,7 @@ setup_requires = [
 ]
 
 install_requires = [
+    'invenio>=3.0.0rc1',
     'Flask-BabelEx>=0.9.2',
 ]
 
@@ -93,7 +94,9 @@ setup(
         # 'invenio_admin.actions': [],
         # 'invenio_assets.bundles': [],
         # 'invenio_base.api_apps': [],
-        # 'invenio_base.api_blueprints': [],
+        'invenio_base.api_blueprints': [
+            'wxpy_index_api = wxpy_index:blueprint_rest',
+        ],
         # 'invenio_base.blueprints': [],
         # 'invenio_celery.tasks': [],
         # 'invenio_db.models': [],

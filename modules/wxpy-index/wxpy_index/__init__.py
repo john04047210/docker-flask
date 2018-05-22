@@ -24,5 +24,6 @@ from __future__ import absolute_import, print_function
 
 from .ext import WxpyIndex
 from .version import __version__
+from .views import blueprint_rest
 
-__all__ = ('__version__', 'WxpyIndex')
+__all__ = ('__version__', 'WxpyIndex', 'blueprint_rest')

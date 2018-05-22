@@ -25,7 +25,7 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, request, url_for
 from flask_babelex import gettext as _
 
 blueprint = Blueprint(
@@ -33,7 +33,14 @@ blueprint = Blueprint(
     __name__,
     template_folder='templates',
     static_folder='static',
-    url_prefix='/wxpy'
+    url_prefix='/wxpy',
+)
+
+blueprint_rest = Blueprint(
+    'wxpy_index_api',
+    __name__,
+    template_folder='templates',
+    static_folder='static',
 )
 
 
@@ -46,7 +53,10 @@ def index():
         module_name=_('Wxpy-Index'))
 
 
-@blueprint.route('/api')
-def rest_api():
-    """Return a basic json."""
-    return jsonify({'code': 0, 'msg': _('success'), 'data': None})
+@blueprint_rest.route('/test')
+def test_api():
+    """Return a basic json.
+
+    access uri: /api/test
+    """
+    return jsonify({'code': 0, 'msg': _('success'), 'data': {'uri': url_for('wxpy_index_api.test_api'), 'method': request.method}})
