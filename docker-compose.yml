@@ -3,8 +3,8 @@ services:
 
   web_flask:
     build: .
-    restart: "always"
-    command: /bin/bash -c "invenio -h 0.0.0.0"
+    restart: "no"
+    command: /bin/bash -c "invenio run --host 0.0.0.0"
     environment:
       - FLASK_DEBUG=1
     volumes:
@@ -18,7 +18,7 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - web_flask
       
