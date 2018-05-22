@@ -9,6 +9,8 @@ services:
       - FLASK_DEBUG=1
     volumes:
       - ./modules:/code/modules
+    ports:
+      - "5000:5000"
     depends_on:
       - redis
 
