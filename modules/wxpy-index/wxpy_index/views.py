@@ -18,14 +18,14 @@
 # Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA 02111-1307, USA.
 
-"""weixin program develop"""
+"""weixin program develop."""
 
 # TODO: This is an example file. Remove it if you do not need it, including
 # the templates and static folders as well as the test case.
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template
+from flask import Blueprint, jsonify, render_template
 from flask_babelex import gettext as _
 
 blueprint = Blueprint(
@@ -37,9 +37,16 @@ blueprint = Blueprint(
 )
 
 
-@blueprint.route("/")
+@blueprint.route('/')
+@blueprint.route('/index')
 def index():
     """Render a basic view."""
     return render_template(
-        "wxpy_index/index.html",
+        'wxpy_index/index.html',
         module_name=_('Wxpy-Index'))
+
+
+@blueprint.route('/api')
+def rest_api():
+    """Return a basic json."""
+    return jsonify({'code': 0, 'msg': _('success'), 'data': None})

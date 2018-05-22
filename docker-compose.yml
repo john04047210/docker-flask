@@ -8,9 +8,9 @@ services:
     environment:
       - FLASK_DEBUG=1
     volumes:
+      - /code/modules/wxpy-index/.eggs
+      - /code/modules/wxpy-index/wxpy_index.egg-info
       - ./modules:/code/modules
-    ports:
-      - "5000:5000"
     depends_on:
       - redis
 
@@ -19,6 +19,8 @@ services:
 
   nginx:
     build: ./nginx
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
       - "8081:80"
     depends_on:
